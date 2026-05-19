@@ -17,10 +17,40 @@ int main() {
     }
 for (int i = 0; i < 5; i++) {
     elever[i].namn[0] = toupper(elever[i].namn[0]);
-    printf ("%s\n", elever[i].namn);
-    }    
+    int summa = 0;  
 
+    for (int j = 0; j < 13; j++) {
+        summa += elever[i].provpoäng[j];
+    }     elever[i].medelvärde = summa / 13.0; // decimaltal på 13:0 för att få ett decimaltal som resultat
+
+
+    //printf ("%s\n", elever[i].namn);
     
-    return 0;
+    }    
+    
+    int vinnar_index = 0;
+    double högsta_medel = -1.0; //negativt för att försäkra att elevernas värde kommer vara högre
+
+    for (int i = 0; i < 5; i++) {
+        if (elever[i].medelvärde > högsta_medel) 
+        { högsta_medel = elever[i].medelvärde;
+        vinnar_index = i;} // högsta medelvärdet sparas i värdet i efter att den har gått igenom alla elever
+    }
+    
+        printf("%s\n", elever[vinnar_index].namn); //vinnar index så att print skriver rätt elevs index nummer, ie namnet.
+
+        double grupp_summa = 0.0;
+        for (int i = 0; i < 5; i++) {
+            grupp_summa += elever[i].medelvärde;
+        } double grupp_snittvärde = grupp_summa / 5.0;
+    
+        for (int i = 0; i < 5; i++) {
+            if (elever[i].medelvärde < grupp_snittvärde) { //programmet kollar om elevens medelvärde är under snittet, och i så fall skriver ut.
+                printf("%s\n", elever[i].namn); //skriver ut.
+                 
+            }
+        }
+    
+        return 0;
 }
 
